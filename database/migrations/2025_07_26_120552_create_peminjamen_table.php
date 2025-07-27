@@ -18,7 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('books_id');
             $table->foreign('books_id')->references('id')->on('books')->onDelete('cascade');
             $table->integer('quantity');
-            $table->enum('status', ['pending','approved', 'reject',])->default('pending');
+            $table->enum('status', ['pending','approved', 'reject', 'returned'])->default('pending');
             $table->date('tanggal_pinjam');
             $table->date('tanggal_kembali')->nullable();
 

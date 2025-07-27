@@ -22,4 +22,22 @@ class PeminjamanController extends Controller
         ]);
         return redirect()->route('admin.peminjaman.index')->with('success', 'Peminjaman approved successfully');
     }
+
+    public function rejeact($id)
+    {
+        $peminjaman = Peminjaman::findOrFail($id);
+        $peminjaman->update([
+            'status' => 'reject'
+        ]);
+        return redirect()->route('admin.peminjaman.index')->with('success', 'Peminjaman rejected successfully');
+    }
+
+    public function return($id)
+    {
+        $peminjaman = Peminjaman::findOrFail($id);
+        $peminjaman->update([
+            'status' => 'returned'
+        ]);
+        return redirect()->route('admin.peminjaman.index')->with('success', 'Peminjaman returned successfully');
+    }
 }

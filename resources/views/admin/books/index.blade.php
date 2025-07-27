@@ -19,6 +19,7 @@
             <table class="table table-striped">
                 <thead>
                     <tr>
+                        <th>Book Code</th>
                         <th>Title</th>
                         <th>Author</th>
                         <th>Publisher</th>
@@ -31,6 +32,18 @@
                 <tbody>
                     @forelse($books ?? [] as $book)
                         <tr>
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    <div class="symbol symbol-circle symbol-35px me-3" style="background-color: #009ef7;">
+                                        <span
+                                            class="text-white fw-bold fs-8">{{ strtoupper(substr($book->book_code ?? 'BK', 0, 2)) }}</span>
+                                    </div>
+                                    <div>
+                                        <strong>{{ $book->book_code ?? 'BK-2025-0001' }}</strong><br>
+                                        <small class="text-muted">{{ $book->title ?? 'Sample Book Title' }}</small>
+                                    </div>
+                                </div>
+                            </td>
                             <td>
                                 <div class="d-flex align-items-center">
                                     @if ($book->image ?? false)
@@ -55,8 +68,8 @@
                                 </span>
                             </td>
                             <td>
-                                <span class="badge badge-{{ ($book->quantity ?? 10) > 0 ? 'success' : 'danger' }}">
-                                    {{ $book->quantity ?? 10 }} pcs
+                                <span class="badge badge-success">
+                                    1 copy
                                 </span>
                             </td>
                             <td class="text-end">

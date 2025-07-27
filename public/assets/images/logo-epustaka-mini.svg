@@ -1,0 +1,31 @@
+<svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Stars -->
+  <g>
+    <!-- Star 1 (largest) -->
+    <path d="M28 9 L30 13 L34.4 13 L31 16 L32.4 20.4 L28 18 L23.6 20.4 L25 16 L21.6 13 L26 13 Z" fill="#FF8C00"/>
+    
+    <!-- Star 2 (medium) -->
+    <path d="M23 5 L24.4 7.6 L27.4 7.6 L25 9.6 L26 12.6 L23 11 L20 12.6 L21 9.6 L18.6 7.6 L21.6 7.6 Z" fill="#FF8C00"/>
+    
+    <!-- Star 3 (smallest) -->
+    <path d="M19 3 L20 5 L22.2 5 L20.4 6.4 L21.2 8.6 L19 7.4 L16.8 8.6 L17.6 6.4 L15.8 5 L18 5 Z" fill="#FF8C00"/>
+  </g>
+  
+  <!-- Books Stack -->
+  <g>
+    <!-- Book 3 (top) -->
+    <path d="M12 14 L28 14 C29 14 30 15 30 16 L30 18 C30 19 29 20 28 20 L12 20 C11 20 10 19 10 18 L10 16 C10 15 11 14 12 14 Z" fill="#1E88E5"/>
+    <rect x="11" y="15" width="18" height="3" fill="white" rx="0.4"/>
+    
+    <!-- Book 2 (middle) -->
+    <path d="M11 19 L29 19 C30 19 31 20 31 21 L31 23 C31 24 30 25 29 25 L11 25 C10 25 9 24 9 23 L9 21 C9 20 10 19 11 19 Z" fill="#1E88E5"/>
+    <rect x="10" y="20" width="20" height="3" fill="white" rx="0.4"/>
+    
+    <!-- Book 1 (bottom) -->
+    <path d="M10 24 L30 24 C31 24 32 25 32 26 L32 28 C32 29 31 30 30 30 L10 30 C9 30 8 29 8 28 L8 26 C8 25 9 24 10 24 Z" fill="#1E88E5"/>
+    <rect x="9" y="25" width="22" height="3" fill="white" rx="0.4"/>
+  </g>
+  
+  <!-- Letter E -->
+  <text x="20" y="37" font-family="Arial, sans-serif" font-size="6" font-weight="bold" text-anchor="middle" fill="#1565C0">E</text>
+</svg>

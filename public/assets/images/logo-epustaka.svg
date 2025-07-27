@@ -1,0 +1,34 @@
+<svg width="200" height="200" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Stars -->
+  <g>
+    <!-- Star 1 (largest) -->
+    <path d="M140 45 L150 65 L172 65 L155 80 L162 102 L140 88 L118 102 L125 80 L108 65 L130 65 Z" fill="#FF8C00"/>
+    
+    <!-- Star 2 (medium) -->
+    <path d="M115 25 L122 38 L137 38 L125 48 L130 63 L115 55 L100 63 L105 48 L93 38 L108 38 Z" fill="#FF8C00"/>
+    
+    <!-- Star 3 (smallest) -->
+    <path d="M95 15 L100 25 L111 25 L102 32 L106 43 L95 37 L84 43 L88 32 L79 25 L90 25 Z" fill="#FF8C00"/>
+  </g>
+  
+  <!-- Books Stack -->
+  <g>
+    <!-- Book 3 (top) -->
+    <path d="M60 70 L140 70 C145 70 150 75 150 80 L150 90 C150 95 145 100 140 100 L60 100 C55 100 50 95 50 90 L50 80 C50 75 55 70 60 70 Z" fill="#1E88E5"/>
+    <path d="M50 80 L50 90 C50 95 55 100 60 100 L140 100 C145 100 150 95 150 90 L150 80" fill="none" stroke="#1565C0" stroke-width="2"/>
+    <rect x="55" y="75" width="90" height="15" fill="white" rx="2"/>
+    
+    <!-- Book 2 (middle) -->
+    <path d="M55 95 L145 95 C150 95 155 100 155 105 L155 115 C155 120 150 125 145 125 L55 125 C50 125 45 120 45 115 L45 105 C45 100 50 95 55 95 Z" fill="#1E88E5"/>
+    <path d="M45 105 L45 115 C45 120 50 125 55 125 L145 125 C150 125 155 120 155 115 L155 105" fill="none" stroke="#1565C0" stroke-width="2"/>
+    <rect x="50" y="100" width="100" height="15" fill="white" rx="2"/>
+    
+    <!-- Book 1 (bottom) -->
+    <path d="M50 120 L150 120 C155 120 160 125 160 130 L160 140 C160 145 155 150 150 150 L50 150 C45 150 40 145 40 140 L40 130 C40 125 45 120 50 120 Z" fill="#1E88E5"/>
+    <path d="M40 130 L40 140 C40 145 45 150 50 150 L150 150 C155 150 160 145 160 140 L160 130" fill="none" stroke="#1565C0" stroke-width="2"/>
+    <rect x="45" y="125" width="110" height="15" fill="white" rx="2"/>
+  </g>
+  
+  <!-- Text -->
+  <text x="100" y="180" font-family="Arial, sans-serif" font-size="24" font-weight="bold" text-anchor="middle" fill="#1565C0">ePustaka</text>
+</svg>

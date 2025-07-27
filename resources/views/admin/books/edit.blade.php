@@ -28,6 +28,17 @@
 
                         <div class="row">
                             <div class="col-md-6 mb-4">
+                                <label class="form-label">Book Code</label>
+                                <input type="text" name="book_code"
+                                    class="form-control @error('book_code') is-invalid @enderror"
+                                    placeholder="Unique book code" value="{{ old('book_code', $book->book_code ?? '') }}" />
+                                @error('book_code')
+                                    <div class="invalid-feedback">{{ $message }}</div>
+                                @enderror
+                                <div class="form-text">Each book must have a unique code</div>
+                            </div>
+
+                            <div class="col-md-6 mb-4">
                                 <label class="form-label required">Title</label>
                                 <input type="text" name="title"
                                     class="form-control @error('title') is-invalid @enderror" placeholder="Enter book title"
@@ -36,7 +47,9 @@
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
+                        </div>
 
+                        <div class="row">
                             <div class="col-md-6 mb-4">
                                 <label class="form-label required">Author</label>
                                 <input type="text" name="author"
@@ -47,9 +60,7 @@
                                     <div class="invalid-feedback">{{ $message }}</div>
                                 @enderror
                             </div>
-                        </div>
 
-                        <div class="row">
                             <div class="col-md-6 mb-4">
                                 <label class="form-label">Publisher</label>
                                 <input type="text" name="publisher"
@@ -92,14 +103,9 @@
                             </div>
 
                             <div class="col-md-6 mb-4">
-                                <label class="form-label required">Quantity</label>
-                                <input type="number" name="quantity"
-                                    class="form-control @error('quantity') is-invalid @enderror"
-                                    placeholder="Enter quantity" value="{{ old('quantity', $book->quantity ?? '') }}"
-                                    min="0" required />
-                                @error('quantity')
-                                    <div class="invalid-feedback">{{ $message }}</div>
-                                @enderror
+                                <label class="form-label">Quantity</label>
+                                <input type="text" class="form-control" value="1" readonly />
+                                <div class="form-text">Each book code represents 1 physical copy</div>
                             </div>
                         </div>
 
