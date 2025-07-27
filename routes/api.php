@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\User\BooksController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,6 +15,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
+
+// Books API Routes
+Route::get('/books', [BooksController::class, 'index']);
+Route::get('/books/search', [BooksController::class, 'search']);
+Route::get('/books/{id}', [BooksController::class, 'show']);

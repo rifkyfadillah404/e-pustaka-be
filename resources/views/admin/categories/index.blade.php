@@ -20,6 +20,7 @@
                 <thead>
                     <tr>
                         <th>Name</th>
+                        <th class="text-end">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -27,27 +28,26 @@
                         <tr>
                             <td>
                                 <div class="d-flex align-items-center">
-
                                     <div>
                                         <strong>{{ $category->name ?? 'Fiction' }}</strong><br>
-                                      
+                                        <small class="text-muted">{{ $category->books_count ?? 0 }} books</small>
                                     </div>
                                 </div>
                             </td>
-                            <td>
+                            <td class="text-end">
                                 <a href="{{ route('admin.categories.edit', $category->id ?? 1) }}"
                                     class="btn btn-sm btn-primary me-2">
-                                    Edit
+                                    <i class="fas fa-edit"></i> Edit
                                 </a>
                                 <button class="btn btn-sm btn-danger"
                                     onclick="confirmDelete('{{ route('admin.categories.destroy', $category->id ?? 1) }}')">
-                                    Delete
+                                    <i class="fas fa-trash"></i> Delete
                                 </button>
                             </td>
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="5" class="text-center py-4">
+                            <td colspan="2" class="text-center py-4">
                                 <p>No categories found.</p>
                                 <a href="{{ route('admin.categories.create') }}" class="btn btn-primary">
                                     Add First Category

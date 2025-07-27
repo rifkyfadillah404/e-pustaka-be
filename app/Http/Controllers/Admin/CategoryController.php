@@ -10,7 +10,7 @@ class CategoryController extends Controller
 {
     public function index()
     {
-        $categories = Category::all();
+        $categories = Category::withCount('books')->orderBy('name')->get();
         return view('admin.categories.index', compact('categories'));
     }
 

@@ -50,7 +50,7 @@
                     </a>
                 </div>
 
-                {{-- <div class="menu-item {{ request()->routeIs('admin.users*') ? 'here show' : '' }}" data-menu="users">
+                <div class="menu-item {{ request()->routeIs('admin.users*') ? 'here show' : '' }}" data-menu="users">
                     <a class="menu-link" href="{{ route('admin.users.index') ?? '#' }}">
                         <span class="menu-icon">
                             <span class="svg-icon svg-icon-2">
@@ -64,7 +64,7 @@
                         </span>
                         <span class="menu-title">Users</span>
                     </a>
-                </div> --}}
+                </div>
 
                 <div class="menu-item {{ request()->routeIs('admin.categories*') ? 'here show' : '' }}" data-menu="categories">
                     <a class="menu-link" href="{{ route('admin.categories.index') ?? '#' }}">

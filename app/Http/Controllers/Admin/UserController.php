@@ -5,13 +5,18 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
     public function index()
     {
-        $users = User::all();
-        return view('admin.users.index', compact('users')) ;
+        // Exclude admin users from the list
+        $users = User::whereDoesntHave('roles', function ($query) {
+            $query->where('name', 'admin');
+        })->get();
+
+        return view('admin.users.index', compact('users'));
     }
 
     public function create()
@@ -27,11 +32,15 @@ class UserController extends Controller
             'password' => 'required|string|min:8|confirmed'
         ]);
 
-        User::create([
+        $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => bcrypt($request->password)
+            'password' => Hash::make($request->password)
         ]);
+
+        // Auto-assign user role
+        $user->assignRole('user');
+
         return redirect()->route('admin.users.index')->with('success', 'User created successfully');
     }
 
@@ -41,7 +50,7 @@ class UserController extends Controller
         return view('admin.users.edit', compact('user'));
     }
 
-    public function update(request $request, $id)
+    public function update(Request $request, $id)
     {
         $request->validate([
             'name' => 'required|string|max:255',
@@ -49,18 +58,20 @@ class UserController extends Controller
             'password' => 'nullable|string|min:8|confirmed'
         ]);
 
-        if ($request->password) {
-            $request->validate([
-                'password' => 'required|string|min:8|confirmed'
-            ]);
-        }
-
         $user = User::findOrFail($id);
-        $user->update([
+
+        $updateData = [
             'name' => $request->name,
             'email' => $request->email,
-            'password' => bcrypt($request->password)
-        ]);
+        ];
+
+        // Only update password if provided
+        if ($request->filled('password')) {
+            $updateData['password'] = Hash::make($request->password);
+        }
+
+        $user->update($updateData);
+
         return redirect()->route('admin.users.index')->with('success', 'User updated successfully');
     }
 

@@ -25,7 +25,7 @@
                         <th>Year</th>
                         <th>Category</th>
                         <th>Quantity</th>
-                        <th>Actions</th>
+                        <th class="text-end">Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -33,17 +33,14 @@
                         <tr>
                             <td>
                                 <div class="d-flex align-items-center">
-                                    @if($book->image ?? false)
-                                        <img src="{{ asset('storage/' . str_replace('public/', '', $book->image)) }}" 
-                                             alt="{{ $book->title }}" class="me-3" style="width: 40px; height: 50px; object-fit: cover;">
-                                    @else
-                                        <div class="symbol symbol-40px me-3" style="background-color: #009ef7;">
-                                            <span class="text-white fw-bold">{{ strtoupper(substr($book->title ?? 'Book', 0, 2)) }}</span>
-                                        </div>
+                                    @if ($book->image ?? false)
+                                        <img src="{{ asset('storage/' . str_replace('public/', '', $book->image)) }}"
+                                            alt="{{ $book->title }}" class="me-3"
+                                            style="width: 40px; height: 50px; object-fit: cover;">
                                     @endif
                                     <div>
                                         <strong>{{ $book->title ?? 'Sample Book Title' }}</strong><br>
-                                        @if($book->rack ?? false)
+                                        @if ($book->rack ?? false)
                                             <small class="text-muted">Rack: {{ $book->rack }}</small>
                                         @endif
                                     </div>
@@ -62,12 +59,14 @@
                                     {{ $book->quantity ?? 10 }} pcs
                                 </span>
                             </td>
-                            <td>
-                                <a href="{{ route('admin.books.edit', $book->id ?? 1) }}" class="btn btn-sm btn-primary me-2">
-                                    Edit
+                            <td class="text-end">
+                                <a href="{{ route('admin.books.edit', $book->id ?? 1) }}"
+                                    class="btn btn-sm btn-primary me-2">
+                                    <i class="fas fa-edit"></i> Edit
                                 </a>
-                                <button class="btn btn-sm btn-danger" onclick="confirmDelete('{{ route('admin.books.destroy', $book->id ?? 1) }}')">
-                                    Delete
+                                <button class="btn btn-sm btn-danger"
+                                    onclick="confirmDelete('{{ route('admin.books.destroy', $book->id ?? 1) }}')">
+                                    <i class="fas fa-trash"></i> Delete
                                 </button>
                             </td>
                         </tr>
