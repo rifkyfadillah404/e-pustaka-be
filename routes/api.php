@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\User\BooksController;
+use App\Http\Controllers\User\PeminjamanApiController;
+use App\Http\Controllers\User\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -15,11 +17,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
+// Authentication Routes (Public)
+Route::post('/auth/login', [AuthController::class, 'login']);
+Route::post('/auth/register', [AuthController::class, 'register']);
 
-// Books API Routes
+// Books API Routes (Public)
 Route::get('/books', [BooksController::class, 'index']);
 Route::get('/books/search', [BooksController::class, 'search']);
 Route::get('/books/{id}', [BooksController::class, 'show']);
+
+// Peminjaman Routes
+Route::get('/peminjaman', [PeminjamanApiController::class, 'index']);
+Route::post('/peminjaman', [PeminjamanApiController::class, 'store']);
+
+Route::middleware('auth:sanctum')->group(function () {
+
+});
