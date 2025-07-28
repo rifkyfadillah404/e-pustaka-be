@@ -13,12 +13,7 @@
     <li class="breadcrumb-item text-muted">Add New</li>
 @endsection
 
-@section('toolbar-actions')
-    <a href="{{ route('admin.categories.index') }}" class="btn btn-light">
-        Back to Categories
-    </a>
 
-@endsection
 
 @section('content')
     <div class="row justify-content-center">

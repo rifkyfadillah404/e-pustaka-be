@@ -19,8 +19,8 @@
             <table class="table table-striped">
                 <thead>
                     <tr>
-                        <th>Book Code</th>
                         <th>Title</th>
+                        <th>Book Code</th>
                         <th>Author</th>
                         <th>Publisher</th>
                         <th>Year</th>
@@ -34,28 +34,23 @@
                         <tr>
                             <td>
                                 <div class="d-flex align-items-center">
-                                    <div class="symbol symbol-circle symbol-35px me-3" style="background-color: #009ef7;">
-                                        <span
-                                            class="text-white fw-bold fs-8">{{ strtoupper(substr($book->book_code ?? 'BK', 0, 2)) }}</span>
-                                    </div>
+                                    @if ($book->image ?? false)
+                                    <img src="{{ asset('storage/' . str_replace('public/', '', $book->image)) }}"
+                                    alt="{{ $book->title }}" class="me-3"
+                                    style="width: 40px; height: 50px; object-fit: cover;">
+                                    @endif
                                     <div>
-                                        <strong>{{ $book->book_code ?? 'BK-2025-0001' }}</strong><br>
-                                        <small class="text-muted">{{ $book->title ?? 'Sample Book Title' }}</small>
+                                        <strong>{{ $book->title ?? 'Sample Book Title' }}</strong><br>
+                                        @if ($book->rack ?? false)
+                                        <small class="text-muted">Rack: {{ $book->rack }}</small>
+                                        @endif
                                     </div>
                                 </div>
                             </td>
                             <td>
                                 <div class="d-flex align-items-center">
-                                    @if ($book->image ?? false)
-                                        <img src="{{ asset('storage/' . str_replace('public/', '', $book->image)) }}"
-                                            alt="{{ $book->title }}" class="me-3"
-                                            style="width: 40px; height: 50px; object-fit: cover;">
-                                    @endif
                                     <div>
-                                        <strong>{{ $book->title ?? 'Sample Book Title' }}</strong><br>
-                                        @if ($book->rack ?? false)
-                                            <small class="text-muted">Rack: {{ $book->rack }}</small>
-                                        @endif
+                                        <strong>{{ $book->book_code ?? 'BK-2025-0001' }}</strong><br>
                                     </div>
                                 </div>
                             </td>
@@ -63,13 +58,13 @@
                             <td>{{ $book->publisher ?? 'Sample Publisher' }}</td>
                             <td>{{ $book->year ?? '2024' }}</td>
                             <td>
-                                <span class="badge badge-primary">
+                                <span class="badge badge-primary ">
                                     {{ $book->category->name ?? 'Fiction' }}
                                 </span>
                             </td>
                             <td>
-                                <span class="badge badge-success">
-                                    1 copy
+                                <span class="badge badge-success ">
+                                    1
                                 </span>
                             </td>
                             <td class="text-end">

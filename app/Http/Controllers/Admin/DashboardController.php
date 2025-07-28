@@ -16,11 +16,11 @@ class DashboardController extends Controller
     {
         // Get basic statistics
         $totalBooks = Book::count();
-        $totalUsers = User::whereHas('roles', function($query) {
+        $totalUsers = User::whereHas('roles', function ($query) {
             $query->where('name', 'user');
         })->count();
         $totalCategories = Category::count();
-        $availableBooks = Book::sum('quantity');
+        $availableBooks = Book::count(); // Each book code = 1 copy
 
         // Get books by category for chart
         $booksByCategory = Category::withCount('books')
@@ -36,9 +36,9 @@ class DashboardController extends Controller
             ->get();
 
         // Get recent users (last 7 days)
-        $recentUsers = User::whereHas('roles', function($query) {
-                $query->where('name', 'user');
-            })
+        $recentUsers = User::whereHas('roles', function ($query) {
+            $query->where('name', 'user');
+        })
             ->where('created_at', '>=', Carbon::now()->subDays(7))
             ->orderBy('created_at', 'desc')
             ->limit(5)
@@ -53,9 +53,9 @@ class DashboardController extends Controller
                 'books' => Book::whereYear('created_at', $date->year)
                     ->whereMonth('created_at', $date->month)
                     ->count(),
-                'users' => User::whereHas('roles', function($query) {
-                        $query->where('name', 'user');
-                    })
+                'users' => User::whereHas('roles', function ($query) {
+                    $query->where('name', 'user');
+                })
                     ->whereYear('created_at', $date->year)
                     ->whereMonth('created_at', $date->month)
                     ->count()
@@ -75,30 +75,30 @@ class DashboardController extends Controller
         $previousMonthBooks = Book::where('created_at', '>=', Carbon::now()->subMonths(2))
             ->where('created_at', '<', Carbon::now()->subMonth())
             ->count();
-        
-        $booksGrowth = $previousMonthBooks > 0 
+
+        $booksGrowth = $previousMonthBooks > 0
             ? round((($lastMonthBooks - $previousMonthBooks) / $previousMonthBooks) * 100, 1)
             : 0;
 
-        $lastMonthUsers = User::whereHas('roles', function($query) {
-                $query->where('name', 'user');
-            })
+        $lastMonthUsers = User::whereHas('roles', function ($query) {
+            $query->where('name', 'user');
+        })
             ->where('created_at', '>=', Carbon::now()->subMonth())
             ->count();
-        $previousMonthUsers = User::whereHas('roles', function($query) {
-                $query->where('name', 'user');
-            })
+        $previousMonthUsers = User::whereHas('roles', function ($query) {
+            $query->where('name', 'user');
+        })
             ->where('created_at', '>=', Carbon::now()->subMonths(2))
             ->where('created_at', '<', Carbon::now()->subMonth())
             ->count();
-        
-        $usersGrowth = $previousMonthUsers > 0 
+
+        $usersGrowth = $previousMonthUsers > 0
             ? round((($lastMonthUsers - $previousMonthUsers) / $previousMonthUsers) * 100, 1)
             : 0;
 
         return view('admin.dashboard', compact(
             'totalBooks',
-            'totalUsers', 
+            'totalUsers',
             'totalCategories',
             'availableBooks',
             'booksByCategory',
@@ -122,9 +122,9 @@ class DashboardController extends Controller
                 'books' => Book::whereYear('created_at', $date->year)
                     ->whereMonth('created_at', $date->month)
                     ->count(),
-                'users' => User::whereHas('roles', function($query) {
-                        $query->where('name', 'user');
-                    })
+                'users' => User::whereHas('roles', function ($query) {
+                    $query->where('name', 'user');
+                })
                     ->whereYear('created_at', $date->year)
                     ->whereMonth('created_at', $date->month)
                     ->count()

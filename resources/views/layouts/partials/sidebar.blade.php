@@ -119,6 +119,29 @@
                     </a>
                 </div>
 
+                <div class="menu-item {{ request()->routeIs('admin.peminjaman*') ? 'here show' : '' }}"
+                    data-menu="peminjaman">
+                    <a class="menu-link" href="{{ route('admin.peminjaman.index') ?? '#' }}">
+                        <span class="menu-icon">
+                            <span class="svg-icon svg-icon-2">
+                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path opacity="0.3"
+                                        d="M20 3H4C2.89543 3 2 3.89543 2 5V16C2 17.1046 2.89543 18 4 18H4.5C5.05228 18 5.5 18.4477 5.5 19V21.5052C5.5 22.1441 6.21212 22.5253 6.74376 22.1708L11.4885 19.0077C12.4741 18.3506 13.6321 18 14.8167 18H20C21.1046 18 22 17.1046 22 16V5C22 3.89543 21.1046 3 20 3Z"
+                                        fill="currentColor" />
+                                    <path
+                                        d="M10.3 14.3L15 9.6C15.3 9.3 15.3 8.7 15 8.4C14.7 8.1 14.1 8.1 13.8 8.4L9.1 13.1C8.8 13.4 8.8 14 9.1 14.3C9.4 14.6 10 14.6 10.3 14.3Z"
+                                        fill="currentColor" />
+                                    <path
+                                        d="M10.3 9.6L15 14.3C15.3 14.6 15.3 15.2 15 15.5C14.7 15.8 14.1 15.8 13.8 15.5L9.1 10.8C8.8 10.5 8.8 9.9 9.1 9.6C9.4 9.3 10 9.3 10.3 9.6Z"
+                                        fill="currentColor" />
+                                </svg>
+                            </span>
+                        </span>
+                        <span class="menu-title">Peminjaman</span>
+                    </a>
+                </div>
+
                 {{-- <div class="menu-item {{ request()->routeIs('admin.reports*') ? 'here show' : '' }}" data-menu="reports">
                     <a class="menu-link" href="{{ route('admin.reports.index') ?? '#' }}">
                         <span class="menu-icon">

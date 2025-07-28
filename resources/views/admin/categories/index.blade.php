@@ -13,7 +13,7 @@
             <h3 class="card-title mb-0">Categories List</h3>
             <a href="{{ route('admin.categories.create') }}" class="btn btn-primary">
                 Add New Category
-            </a>
+            </a>    
         </div>
         <div class="card-body">
             <table class="table table-striped">
