@@ -43,7 +43,7 @@
             <!-- Logo and Header -->
             <div class="text-center mb-8">
                 <div class="mx-auto w-20 h-20 bg-gradient-to-r from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center mb-4 shadow-lg">
-                    <i class="fas fa-book-open text-white text-2xl"></i>
+                    <img src="{{ asset('assets/images/logo-epustaka.svg') }}" alt="" srcset="">
                 </div>
                 <h1 class="text-3xl font-bold text-gray-800 mb-2">E-Pustaka</h1>
                 <p class="text-gray-600 font-medium">Admin Dashboard</p>

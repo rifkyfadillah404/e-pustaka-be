@@ -51,11 +51,6 @@
                             <tr>
                                 <td>
                                     <div class="d-flex align-items-center">
-                                        <div class="symbol symbol-circle symbol-35px me-3"
-                                            style="background-color: #009ef7;">
-                                            <span
-                                                class="text-white fw-bold fs-8">{{ strtoupper(substr($item->user->name ?? 'U', 0, 1)) }}</span>
-                                        </div>
                                         <div>
                                             <strong>{{ $item->user->name ?? 'Unknown User' }}</strong><br>
                                             <small class="text-muted">{{ $item->user->email ?? 'No email' }}</small>
@@ -64,11 +59,6 @@
                                 </td>
                                 <td>
                                     <div class="d-flex align-items-center">
-                                        <div class="symbol symbol-circle symbol-35px me-3"
-                                            style="background-color: #17C653;">
-                                            <span
-                                                class="text-white fw-bold fs-8">{{ strtoupper(substr($item->book->book_code ?? 'BK', 0, 2)) }}</span>
-                                        </div>
                                         <div>
                                             <strong>{{ $item->book->book_code ?? 'Unknown Code' }}</strong><br>
                                             <small class="text-muted">{{ $item->book->title ?? 'Unknown Book' }}</small>

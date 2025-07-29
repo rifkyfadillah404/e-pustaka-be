@@ -4,6 +4,7 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Models\Book;
+use App\Models\Peminjaman;
 use Illuminate\Http\Request;
 
 class BooksController extends Controller
@@ -25,6 +26,11 @@ class BooksController extends Controller
                     $fotoUrl = url('storage/' . $imagePath);
                 }
 
+                // Check if book is currently borrowed
+                $isBorrowed = Peminjaman::where('books_id', $book->id)
+                    ->where('status', 'approved')
+                    ->exists();
+
                 return [
                     'id' => $book->id,
                     'title' => $book->title,
@@ -35,6 +41,8 @@ class BooksController extends Controller
                     'rack' => $book->rack,
                     'category' => $book->category ? $book->category->name : null,
                     'quantity' => (int) $book->quantity,
+                    'is_available' => !$isBorrowed,
+                    'status' => $isBorrowed ? 'borrowed' : 'available',
                     'fotoUrl' => $fotoUrl
                 ];
             });
@@ -67,6 +75,11 @@ class BooksController extends Controller
                 $fotoUrl = url('storage/' . $imagePath);
             }
 
+            // Check if book is currently borrowed
+            $isBorrowed = Peminjaman::where('books_id', $book->id)
+                ->where('status', 'approved')
+                ->exists();
+
             $formatted = [
                 'id' => $book->id,
                 'title' => $book->title,
@@ -77,6 +90,8 @@ class BooksController extends Controller
                 'rack' => $book->rack,
                 'category' => $book->category ? $book->category->name : null,
                 'quantity' => (int) $book->quantity,
+                'is_available' => !$isBorrowed,
+                'status' => $isBorrowed ? 'borrowed' : 'available',
                 'fotoUrl' => $fotoUrl
             ];
 
@@ -115,6 +130,11 @@ class BooksController extends Controller
                     $fotoUrl = url('storage/' . $imagePath);
                 }
 
+                // Check if book is currently borrowed
+                $isBorrowed = Peminjaman::where('books_id', $book->id)
+                    ->where('status', 'approved')
+                    ->exists();
+
                 return [
                     'id' => $book->id,
                     'title' => $book->title,
@@ -125,6 +145,8 @@ class BooksController extends Controller
                     'rack' => $book->rack,
                     'category' => $book->category ? $book->category->name : null,
                     'quantity' => (int) $book->quantity,
+                    'is_available' => !$isBorrowed,
+                    'status' => $isBorrowed ? 'borrowed' : 'available',
                     'fotoUrl' => $fotoUrl
                 ];
             });

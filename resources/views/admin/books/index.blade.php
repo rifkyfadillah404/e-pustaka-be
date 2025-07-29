@@ -21,11 +21,12 @@
                     <tr>
                         <th>Title</th>
                         <th>Book Code</th>
+                        <th>Quantity</th>
                         <th>Author</th>
                         <th>Publisher</th>
                         <th>Year</th>
                         <th>Category</th>
-                        <th>Quantity</th>
+                        <th>Status</th>
                         <th class="text-end">Actions</th>
                     </tr>
                 </thead>
@@ -35,14 +36,14 @@
                             <td>
                                 <div class="d-flex align-items-center">
                                     @if ($book->image ?? false)
-                                    <img src="{{ asset('storage/' . str_replace('public/', '', $book->image)) }}"
-                                    alt="{{ $book->title }}" class="me-3"
-                                    style="width: 40px; height: 50px; object-fit: cover;">
+                                        <img src="{{ asset('storage/' . str_replace('public/', '', $book->image)) }}"
+                                            alt="{{ $book->title }}" class="me-3"
+                                            style="width: 40px; height: 50px; object-fit: cover;">
                                     @endif
                                     <div>
                                         <strong>{{ $book->title ?? 'Sample Book Title' }}</strong><br>
                                         @if ($book->rack ?? false)
-                                        <small class="text-muted">Rack: {{ $book->rack }}</small>
+                                            <small class="text-muted">Rack: {{ $book->rack }}</small>
                                         @endif
                                     </div>
                                 </div>
@@ -54,6 +55,7 @@
                                     </div>
                                 </div>
                             </td>
+                            <td>{{ $book->quantity ?? 0 }}</td>
                             <td>{{ $book->author ?? 'Sample Author' }}</td>
                             <td>{{ $book->publisher ?? 'Sample Publisher' }}</td>
                             <td>{{ $book->year ?? '2024' }}</td>
@@ -63,9 +65,21 @@
                                 </span>
                             </td>
                             <td>
-                                <span class="badge badge-success ">
-                                    1
-                                </span>
+                                @php
+                                    $isBorrowed = \App\Models\Peminjaman::where('books_id', $book->id)
+                                        ->where('status', 'approved')
+                                        ->exists();
+                                @endphp
+
+                                @if ($isBorrowed)
+                                    <span class="badge badge-danger">
+                                        <i class="fas fa-book-reader"></i> Borrowed
+                                    </span>
+                                @else
+                                    <span class="badge badge-success">
+                                        <i class="fas fa-check"></i> Available
+                                    </span>
+                                @endif
                             </td>
                             <td class="text-end">
                                 <a href="{{ route('admin.books.edit', $book->id ?? 1) }}"

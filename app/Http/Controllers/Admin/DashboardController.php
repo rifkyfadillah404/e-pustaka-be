@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Book;
 use App\Models\User;
 use App\Models\Category;
+use App\Models\Peminjaman;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
@@ -20,7 +21,9 @@ class DashboardController extends Controller
             $query->where('name', 'user');
         })->count();
         $totalCategories = Category::count();
-        $availableBooks = Book::count(); // Each book code = 1 copy
+        // Calculate available books (not currently borrowed)
+        $borrowedBookIds = Peminjaman::where('status', 'approved')->pluck('books_id');
+        $availableBooks = Book::whereNotIn('id', $borrowedBookIds)->count();
 
         // Get books by category for chart
         $booksByCategory = Category::withCount('books')

@@ -95,6 +95,17 @@ class PeminjamanApiController extends Controller
                 ], 400);
             }
 
+            // Check if book is currently borrowed by someone else
+            $bookBorrowed = Peminjaman::where('books_id', $book->id)
+                ->where('status', 'approved')
+                ->exists();
+
+            if ($bookBorrowed) {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'This book is currently borrowed by another user',
+                ], 400);
+            }
 
             // Buat permintaan peminjaman baru
             $peminjaman = Peminjaman::create([

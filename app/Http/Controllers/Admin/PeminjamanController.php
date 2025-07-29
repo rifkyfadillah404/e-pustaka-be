@@ -32,6 +32,8 @@ class PeminjamanController extends Controller
             'tanggal_pinjam' => Carbon::now()->format('Y-m-d')
         ]);
 
+
+
         return redirect()->route('admin.peminjaman.index')
             ->with('success', 'Peminjaman approved successfully');
     }
