@@ -27,10 +27,19 @@ class PeminjamanController extends Controller
                 ->with('error', 'Only pending requests can be approved');
         }
 
+        $book = $peminjaman->book;
+
+        if ($book->quantity < $peminjaman->quantity) {
+            return redirect()->route('admin.peminjaman.index')
+                ->with('error', 'Book is out of stock');
+        }
+
         $peminjaman->update([
             'status' => 'approved',
             'tanggal_pinjam' => Carbon::now()->format('Y-m-d')
         ]);
+
+        $book->decrement('quantity', $peminjaman->quantity);
 
 
 
@@ -68,6 +77,9 @@ class PeminjamanController extends Controller
             'status' => 'returned',
             'tanggal_kembali' => Carbon::now()->format('Y-m-d')
         ]);
+
+        $book = $peminjaman->book;
+        $book->increment('quantity', $peminjaman->quantity);
 
         return redirect()->route('admin.peminjaman.index')
             ->with('success', 'Book returned successfully');
